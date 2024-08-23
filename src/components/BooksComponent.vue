@@ -7,12 +7,15 @@ const props = defineProps({
 <template>
   <div class="books-list">
     <div class="book" v-for="book in props.books" :key="book.id">
+      <div class="readIt" v-if="book.isRead">
+        <i class="fa-solid fa-eye"></i>
+      </div>
       <div class="book-cover">
         <img :src="book.cover" :alt="book.title" />
 
-        <button>
+        <button :class="{ isRead: book.isRead }">
           <i class="fa-solid fa-eye"></i>
-          <span>Ainda não li</span>
+          <span>{{ book.isRead ? 'Lido' : 'Ainda não li' }}</span>
         </button>
       </div>
       <div class="book-details">
