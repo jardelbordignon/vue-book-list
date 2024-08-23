@@ -1,8 +1,9 @@
 <script setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 
 import BookProgress from './components/BookProgress.vue'
 import BooksComponent from './components/BooksComponent.vue'
+import AddBookComponent from './components/AddBookComponent.vue'
 
 const books = reactive([
   {
@@ -39,6 +40,8 @@ const books = reactive([
   }
 ])
 
+const showAddBook = ref(false)
+
 const handleToggleIsRead = (bookId) => {
   const index = books.findIndex((book) => book.id === bookId)
   books[index].isRead = !books[index].isRead
@@ -46,10 +49,13 @@ const handleToggleIsRead = (bookId) => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" v-if="showAddBook">
+    <AddBookComponent @closeAddBook="showAddBook = false" />
+  </div>
+  <div class="container" v-else>
     <h1>📖 Meus Livros</h1>
     <div class="header-btns">
-      <button class="btn">Adicionar Livro +</button>
+      <button class="btn" @click="showAddBook = true">Adicionar Livro +</button>
     </div>
 
     <div class="books-container">
