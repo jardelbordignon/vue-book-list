@@ -1,7 +1,9 @@
 <script setup>
+import { reactive } from 'vue'
+
 import BooksComponent from './components/BooksComponent.vue'
 
-const books = [
+const books = reactive([
   {
     id: 1,
     title: 'History of Europe',
@@ -34,7 +36,12 @@ const books = [
     isbn: '0-395-07157-8',
     author: 'Daniel Trejo'
   }
-]
+])
+
+const handleToggleIsRead = (bookId) => {
+  const index = books.findIndex((book) => book.id === bookId)
+  books[index].isRead = !books[index].isRead
+}
 </script>
 
 <template>
@@ -45,7 +52,7 @@ const books = [
     </div>
 
     <div class="books-container">
-      <BooksComponent :books="books" />
+      <BooksComponent :books="books" @toggleIsRead="handleToggleIsRead" />
     </div>
   </div>
 </template>
