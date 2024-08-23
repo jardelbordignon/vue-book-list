@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
-import Progress from '../components/ProgressComponent.vue'
+//import Progress from '../components/ProgressComponent.vue'
 
 // ref para tipos primitivos como number, string, boolean
 //const count = ref(0)
@@ -39,6 +39,6 @@ function addCourse() {
     <input type="text" v-model="newCourse.title" />
     <button type="button" @click="addCourse">Adicionar</button>
 
-    <Progress :courses="courses" />
+    <!-- <Progress :courses="courses" /> -->
   </div>
 </template>
